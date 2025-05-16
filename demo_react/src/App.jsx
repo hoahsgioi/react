@@ -1,34 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState, useEffect, Suspense } from 'react'
 import './App.css'
+import './MagnusHealth.css'
+import MagnusNavbar from './components/magnus/MagnusNavbar'
+import MagnusHeader from './components/magnus/MagnusHeader'
+import MagnusFeatures from './components/magnus/MagnusFeatures'
+import MagnusTestimonials from './components/magnus/MagnusTestimonials'
+import MagnusContact from './components/magnus/MagnusContact'
+import MagnusFooter from './components/magnus/MagnusFooter'
+
+// Error boundary component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Component error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: "20px", color: "red" }}>
+          <h2>Đã xảy ra lỗi</h2>
+          <p>{this.state.error && this.state.error.toString()}</p>
+          <button onClick={() => window.location.reload()}>Tải lại trang</button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate checking if all components are loaded
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <div className="loading">Đang tải...</div>;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ErrorBoundary>
+      <Suspense fallback={<div>Đang tải component...</div>}>
+        <div className="magnus-app">
+          <MagnusNavbar />
+          <MagnusHeader />
+          <MagnusFeatures />
+          <MagnusTestimonials />
+          <MagnusContact />
+          <MagnusFooter />
+        </div>
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 
