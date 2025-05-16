@@ -37,7 +37,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 0 1rem;
   font-weight: 700;
   line-height: 1.2;
@@ -71,23 +76,51 @@ a:hover {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .animate-fadeIn {
@@ -184,7 +217,7 @@ a:hover {
 }
 
 .magnus-light {
-  color: white;
+  color: black;
   border-color: white;
 }
 
@@ -291,7 +324,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
 }
 
 .feature-card:hover {
@@ -316,12 +349,15 @@ a:hover {
   font-size: 1.25rem;
   margin-bottom: 1rem;
   color: var(--magnus-secondary);
+  text-align: center;
+
 }
 
 .feature-card__text {
   color: var(--magnus-text-medium);
   margin-bottom: 0;
   flex-grow: 1;
+  text-align: center;
 }
 
 /* Magnus Testimonials */
@@ -533,19 +569,19 @@ a:hover {
   h1 {
     font-size: 2.3rem;
   }
-  
+
   h2 {
     font-size: 1.85rem;
   }
-  
+
   h3 {
     font-size: 1.6rem;
   }
-  
+
   .magnus-header {
     padding: 7rem 0 4rem;
   }
-  
+
   .magnus-header__title {
     font-size: 2.5rem;
   }
@@ -553,19 +589,20 @@ a:hover {
   .magnus-header__content {
     margin-bottom: 3rem;
   }
-  
-  .magnus-features, 
-  .magnus-testimonials, 
+
+  .magnus-features,
+  .magnus-testimonials,
   .magnus-contact {
     padding: 4rem 0;
   }
-  
+
   .magnus-footer__links {
     flex-direction: column;
     gap: 2.5rem;
   }
 
-  .feature-card, .testimonial-card {
+  .feature-card,
+  .testimonial-card {
     margin-bottom: 2rem;
   }
 }
@@ -817,11 +854,11 @@ a:hover {
   .magnus-navbar__links {
     gap: 1.25rem;
   }
-  
+
   .magnus-navbar__link {
     font-size: 0.8rem;
   }
-  
+
   .magnus-navbar__right .button {
     padding: 0.65rem 0.85rem;
     font-size: 0.7rem;
@@ -832,15 +869,15 @@ a:hover {
   .magnus-navbar__links {
     display: none;
   }
-  
+
   .magnus-navbar__mobile-toggle {
     display: block;
   }
-  
+
   .magnus-navbar__right {
     display: none;
   }
-  
+
   .magnus-navbar__mobile-menu {
     position: fixed;
     top: 70px;
@@ -858,19 +895,26 @@ a:hover {
     animation: slideUpMobile 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     z-index: 9;
   }
-  
+
   @keyframes slideUpMobile {
-    from { transform: translateY(100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-  
+
   .magnus-navbar__mobile-menu-section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .magnus-navbar__mobile-menu-item {
     padding: 1rem 1.25rem;
     color: var(--magnus-text-dark);
@@ -878,22 +922,22 @@ a:hover {
     border-radius: 10px;
     transition: all 0.3s ease;
   }
-  
+
   .magnus-navbar__mobile-menu-item:hover {
     background-color: var(--magnus-bg-gray);
     color: var(--magnus-primary);
   }
-  
+
   .magnus-navbar__mobile-menu-dropdown {
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .magnus-navbar__mobile-menu-dropdown.active {
     background-color: var(--magnus-bg-gray);
   }
-  
+
   .magnus-navbar__mobile-menu-header {
     display: flex;
     justify-content: space-between;
@@ -902,34 +946,34 @@ a:hover {
     font-weight: 500;
     cursor: pointer;
   }
-  
+
   .dropdown-arrow {
     transition: transform 0.3s ease;
   }
-  
+
   .dropdown-arrow.open {
     transform: rotate(180deg);
   }
-  
+
   .magnus-navbar__mobile-submenu {
     display: flex;
     flex-direction: column;
     padding: 0 0 0.5rem 0;
     background-color: rgba(0, 0, 0, 0.02);
   }
-  
+
   .magnus-navbar__mobile-submenu a {
     padding: 0.8rem 1.25rem 0.8rem 2.5rem;
     color: var(--magnus-text-medium);
     position: relative;
     transition: all 0.3s ease;
   }
-  
+
   .magnus-navbar__mobile-submenu a:hover {
     color: var(--magnus-primary);
     background-color: rgba(0, 0, 0, 0.02);
   }
-  
+
   .magnus-navbar__mobile-submenu a::before {
     content: '';
     position: absolute;
@@ -942,7 +986,7 @@ a:hover {
     transform: translateY(-50%);
     opacity: 0.5;
   }
-  
+
   .magnus-navbar__mobile-buttons {
     display: flex;
     flex-direction: column;
@@ -951,7 +995,7 @@ a:hover {
     padding-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
-  
+
   .magnus-navbar__mobile-buttons .button {
     width: 100%;
     text-align: center;
@@ -965,30 +1009,30 @@ a:hover {
   .magnus-navbar {
     padding: 0.75rem 0;
   }
-  
+
   .magnus-navbar--scrolled {
     padding: 0.6rem 0;
   }
-  
+
   .magnus-navbar__logo svg {
     width: 110px;
   }
-  
+
   .magnus-navbar__container {
     padding: 0 1rem;
   }
-  
+
   .magnus-navbar__mobile-menu {
     top: 60px;
     padding: 1.25rem;
   }
-  
+
   .magnus-navbar__mobile-menu-item,
   .magnus-navbar__mobile-menu-header {
     padding: 0.9rem 1rem;
   }
-  
+
   .magnus-navbar__mobile-submenu a {
     padding: 0.7rem 1rem 0.7rem 2rem;
   }
-} 
+}
