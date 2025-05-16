@@ -26,7 +26,7 @@ function MagnusTestimonials() {
   ]
 
   return (
-    <section className="magnus-testimonials">
+    <section className="magnus-testimonials animate-on-scroll">
       <div className="container">
         <div className="section-header text-center">
           <h2>Trusted by Schools Nationwide</h2>
@@ -34,8 +34,15 @@ function MagnusTestimonials() {
         </div>
         
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '3rem' }}>
-          {testimonials.map(testimonial => (
-            <div key={testimonial.id} className="col" style={{ flex: '1 1 300px' }}>
+          {testimonials.map((testimonial, index) => (
+            <div 
+              key={testimonial.id} 
+              className="col animate-on-scroll" 
+              style={{ 
+                flex: '1 1 300px',
+                animationDelay: `${index * 0.15}s`
+              }}
+            >
               <div className="testimonial-card">
                 <p className="testimonial-card__content">"{testimonial.content}"</p>
                 <div className="testimonial-card__author">

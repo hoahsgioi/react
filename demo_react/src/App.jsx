@@ -26,10 +26,17 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: "20px", color: "red" }}>
-          <h2>Đã xảy ra lỗi</h2>
-          <p>{this.state.error && this.state.error.toString()}</p>
-          <button onClick={() => window.location.reload()}>Tải lại trang</button>
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Đã xảy ra lỗi</h2>
+            <p>{this.state.error && this.state.error.toString()}</p>
+            <button 
+              className="button button-primary" 
+              onClick={() => window.location.reload()}
+            >
+              Tải lại trang
+            </button>
+          </div>
         </div>
       );
     }
@@ -39,9 +46,20 @@ class ErrorBoundary extends React.Component {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
+  // Handle scroll position
   useEffect(() => {
-    // Simulate checking if all components are loaded
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  // Simulated loading
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -49,13 +67,54 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Intersection Observer to add animations when elements come into view
+  useEffect(() => {
+    if (!isLoading) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      // Observe all sections
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        observer.observe(el);
+      });
+
+      return () => {
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+          observer.unobserve(el);
+        });
+      };
+    }
+  }, [isLoading]);
+
   if (isLoading) {
-    return <div className="loading">Đang tải...</div>;
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Đang tải ứng dụng...</p>
+      </div>
+    );
   }
+
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<div>Đang tải component...</div>}>
+      <Suspense fallback={
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Đang tải component...</p>
+        </div>
+      }>
         <div className="magnus-app">
           <MagnusNavbar />
           <MagnusHeader />
@@ -63,6 +122,27 @@ function App() {
           <MagnusTestimonials />
           <MagnusContact />
           <MagnusFooter />
+          
+          {scrollPosition > 300 && (
+            <button 
+              className="scroll-to-top" 
+              onClick={goToTop}
+              aria-label="Cuộn lên đầu trang"
+            >
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  d="M12 4L4 12H9V20H15V12H20L12 4Z" 
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </Suspense>
     </ErrorBoundary>

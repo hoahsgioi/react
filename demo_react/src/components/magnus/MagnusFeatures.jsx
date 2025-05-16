@@ -29,7 +29,7 @@ function MagnusFeatures() {
   ]
 
   return (
-    <section className="magnus-features">
+    <section className="magnus-features animate-on-scroll">
       <div className="container">
         <div className="section-header text-center">
           <h2>Powerful Features for School Health Management</h2>
@@ -37,8 +37,15 @@ function MagnusFeatures() {
         </div>
         
         <div className="row" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '3rem' }}>
-          {features.map(feature => (
-            <div key={feature.id} className="col" style={{ flex: '1 1 250px' }}>
+          {features.map((feature, index) => (
+            <div 
+              key={feature.id} 
+              className="col animate-on-scroll" 
+              style={{ 
+                flex: '1 1 250px',
+                animationDelay: `${index * 0.15}s`
+              }}
+            >
               <div className="feature-card">
                 <div className="feature-card__icon">
                   <span style={{ fontSize: '24px' }}>{feature.icon}</span>
