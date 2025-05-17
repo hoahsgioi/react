@@ -68,10 +68,9 @@ function MagnusNavbar() {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-blue-600">
-              Magnus Health
+        <div className="flex items-center justify-between">          <div className="flex items-center">
+            <Link to="/" className="flex items-center">
+              <img src="/src/assets/logo.svg" alt="School Medical System" className="h-10" />
             </Link>
           </div>
 
