@@ -1,14 +1,15 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import MagnusNavbar from '../components/magnus/MagnusNavbar';
-import MagnusFooter from '../components/magnus/MagnusFooter';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import MagnusNavbar from "../components/magnus/MagnusNavbar";
+import MagnusFooter from "../components/magnus/MagnusFooter";
 
 function PublicLayout({ children }) {
   const navigate = useNavigate();
-  
+
   const handleBack = () => {
     navigate(-1); // Navigate to the previous page
-  };  return (
+  };
+  return (
     <div className="public-layout">
       <MagnusNavbar />
       <div className="container pt-4">
@@ -16,9 +17,7 @@ function PublicLayout({ children }) {
           <i className="bi bi-arrow-left"></i> Back
         </button>
       </div>
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <MagnusFooter />
     </div>
   );

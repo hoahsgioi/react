@@ -1,48 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function HealthRecordForm() {
   const [activeTab, setActiveTab] = useState(1);
   const [formData, setFormData] = useState({
     // Student Personal Information
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    gender: '',
-    grade: '',
-    class: '',
-    studentId: '',
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    grade: "",
+    class: "",
+    studentId: "",
     photo: null,
-    
+
     // Medical Background
-    bloodType: '',
-    height: '',
-    weight: '',
+    bloodType: "",
+    height: "",
+    weight: "",
     allergies: [],
     chronicConditions: [],
-    
+
     // Vision and Hearing
-    visionLeft: '',
-    visionRight: '',
+    visionLeft: "",
+    visionRight: "",
     wearGlasses: false,
-    hearingLeft: '',
-    hearingRight: '',
+    hearingLeft: "",
+    hearingRight: "",
     hearingAid: false,
-    
+
     // Vaccination History
     vaccinations: [],
-    
+
     // Medical Treatment History
     treatments: [],
-    
+
     // Emergency Contacts
-    emergencyContacts: [{ name: '', relationship: '', phone: '', email: '' }],
-    
+    emergencyContacts: [{ name: "", relationship: "", phone: "", email: "" }],
+
     // Medical Coverage
-    insuranceProvider: '',
-    insuranceNumber: '',
-    familyDoctor: '',
-    doctorPhone: '',
-    
+    insuranceProvider: "",
+    insuranceNumber: "",
+    familyDoctor: "",
+    doctorPhone: "",
+
     // Consent
     consentEmergencyTreatment: false,
     consentMedicationAdmin: false,
@@ -52,56 +52,59 @@ function HealthRecordForm() {
   // Handle form field changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleArrayInput = (field, value) => {
-    if (value.trim() !== '') {
-      setFormData(prev => ({
+    if (value.trim() !== "") {
+      setFormData((prev) => ({
         ...prev,
-        [field]: [...prev[field], value]
+        [field]: [...prev[field], value],
       }));
     }
   };
 
   const removeArrayItem = (field, index) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index)
+      [field]: prev[field].filter((_, i) => i !== index),
     }));
   };
 
   const handleContactChange = (index, field, value) => {
     const updatedContacts = [...formData.emergencyContacts];
     updatedContacts[index] = { ...updatedContacts[index], [field]: value };
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      emergencyContacts: updatedContacts
+      emergencyContacts: updatedContacts,
     }));
   };
 
   const addContact = () => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      emergencyContacts: [...prev.emergencyContacts, { name: '', relationship: '', phone: '', email: '' }]
+      emergencyContacts: [
+        ...prev.emergencyContacts,
+        { name: "", relationship: "", phone: "", email: "" },
+      ],
     }));
   };
 
   const removeContact = (index) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      emergencyContacts: prev.emergencyContacts.filter((_, i) => i !== index)
+      emergencyContacts: prev.emergencyContacts.filter((_, i) => i !== index),
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // In a real app, you would send this data to your API
-    alert('Health record submitted successfully!');
+    alert("Health record submitted successfully!");
   };
 
   // Tab content components
@@ -109,7 +112,9 @@ function HealthRecordForm() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            First Name
+          </label>
           <input
             type="text"
             name="firstName"
@@ -120,7 +125,9 @@ function HealthRecordForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Last Name
+          </label>
           <input
             type="text"
             name="lastName"
@@ -131,10 +138,12 @@ function HealthRecordForm() {
           />
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Date of Birth
+          </label>
           <input
             type="date"
             name="dateOfBirth"
@@ -145,7 +154,9 @@ function HealthRecordForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Gender
+          </label>
           <select
             name="gender"
             value={formData.gender}
@@ -160,7 +171,9 @@ function HealthRecordForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Student ID
+          </label>
           <input
             type="text"
             name="studentId"
@@ -173,7 +186,9 @@ function HealthRecordForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Grade</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Grade
+          </label>
           <select
             name="grade"
             value={formData.grade}
@@ -198,7 +213,9 @@ function HealthRecordForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Class</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Class
+          </label>
           <input
             type="text"
             name="class"
@@ -210,15 +227,21 @@ function HealthRecordForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Student Photo</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Student Photo
+        </label>
         <input
           type="file"
           name="photo"
-          onChange={(e) => setFormData({...formData, photo: e.target.files[0]})}
+          onChange={(e) =>
+            setFormData({ ...formData, photo: e.target.files[0] })
+          }
           className="w-full p-2 border border-gray-300 rounded"
           accept="image/*"
         />
-        <p className="mt-1 text-sm text-gray-500">Upload a recent photo of your child.</p>
+        <p className="mt-1 text-sm text-gray-500">
+          Upload a recent photo of your child.
+        </p>
       </div>
     </div>
   );
@@ -227,7 +250,9 @@ function HealthRecordForm() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Blood Type</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Blood Type
+          </label>
           <select
             name="bloodType"
             value={formData.bloodType}
@@ -247,7 +272,9 @@ function HealthRecordForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Height (cm)
+          </label>
           <input
             type="number"
             name="height"
@@ -257,7 +284,9 @@ function HealthRecordForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Weight (kg)
+          </label>
           <input
             type="number"
             name="weight"
@@ -269,7 +298,9 @@ function HealthRecordForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Allergies</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Allergies
+        </label>
         <div className="flex items-center space-x-2">
           <input
             type="text"
@@ -280,9 +311,9 @@ function HealthRecordForm() {
           <button
             type="button"
             onClick={() => {
-              const input = document.getElementById('allergy-input');
-              handleArrayInput('allergies', input.value);
-              input.value = '';
+              const input = document.getElementById("allergy-input");
+              handleArrayInput("allergies", input.value);
+              input.value = "";
             }}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
@@ -291,14 +322,14 @@ function HealthRecordForm() {
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
           {formData.allergies.map((allergy, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-blue-100 text-blue-800"
             >
               {allergy}
               <button
                 type="button"
-                onClick={() => removeArrayItem('allergies', index)}
+                onClick={() => removeArrayItem("allergies", index)}
                 className="ml-1 text-blue-500 hover:text-blue-700"
               >
                 &times;
@@ -312,7 +343,9 @@ function HealthRecordForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Chronic Conditions</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Chronic Conditions
+        </label>
         <div className="flex items-center space-x-2">
           <input
             type="text"
@@ -323,9 +356,9 @@ function HealthRecordForm() {
           <button
             type="button"
             onClick={() => {
-              const input = document.getElementById('condition-input');
-              handleArrayInput('chronicConditions', input.value);
-              input.value = '';
+              const input = document.getElementById("condition-input");
+              handleArrayInput("chronicConditions", input.value);
+              input.value = "";
             }}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
@@ -334,14 +367,14 @@ function HealthRecordForm() {
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
           {formData.chronicConditions.map((condition, index) => (
-            <span 
-              key={index} 
+            <span
+              key={index}
               className="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-green-100 text-green-800"
             >
               {condition}
               <button
                 type="button"
-                onClick={() => removeArrayItem('chronicConditions', index)}
+                onClick={() => removeArrayItem("chronicConditions", index)}
                 className="ml-1 text-green-500 hover:text-green-700"
               >
                 &times;
@@ -359,10 +392,14 @@ function HealthRecordForm() {
   const renderVisionHearing = () => (
     <div className="space-y-8">
       <div>
-        <h3 className="text-lg font-medium text-gray-800 mb-4">Vision Information</h3>
+        <h3 className="text-lg font-medium text-gray-800 mb-4">
+          Vision Information
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Vision (Left Eye)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Vision (Left Eye)
+            </label>
             <input
               type="text"
               name="visionLeft"
@@ -373,7 +410,9 @@ function HealthRecordForm() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Vision (Right Eye)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Vision (Right Eye)
+            </label>
             <input
               type="text"
               name="visionRight"
@@ -399,10 +438,14 @@ function HealthRecordForm() {
       </div>
 
       <div>
-        <h3 className="text-lg font-medium text-gray-800 mb-4">Hearing Information</h3>
+        <h3 className="text-lg font-medium text-gray-800 mb-4">
+          Hearing Information
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Hearing (Left Ear)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Hearing (Left Ear)
+            </label>
             <select
               name="hearingLeft"
               value={formData.hearingLeft}
@@ -417,7 +460,9 @@ function HealthRecordForm() {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Hearing (Right Ear)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Hearing (Right Ear)
+            </label>
             <select
               name="hearingRight"
               value={formData.hearingRight}
@@ -450,12 +495,17 @@ function HealthRecordForm() {
 
   const renderEmergencyContacts = () => (
     <div className="space-y-6">
-      <p className="text-gray-600">Add at least one emergency contact who can be reached during school hours in case of emergency.</p>
-      
+      <p className="text-gray-600">
+        Add at least one emergency contact who can be reached during school
+        hours in case of emergency.
+      </p>
+
       {formData.emergencyContacts.map((contact, index) => (
         <div key={index} className="p-4 border border-gray-200 rounded-lg mb-4">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-medium text-gray-800">Contact {index + 1}</h3>
+            <h3 className="text-lg font-medium text-gray-800">
+              Contact {index + 1}
+            </h3>
             {index > 0 && (
               <button
                 type="button"
@@ -466,23 +516,31 @@ function HealthRecordForm() {
               </button>
             )}
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Full Name
+              </label>
               <input
                 type="text"
                 value={contact.name}
-                onChange={(e) => handleContactChange(index, 'name', e.target.value)}
+                onChange={(e) =>
+                  handleContactChange(index, "name", e.target.value)
+                }
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Relationship</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Relationship
+              </label>
               <select
                 value={contact.relationship}
-                onChange={(e) => handleContactChange(index, 'relationship', e.target.value)}
+                onChange={(e) =>
+                  handleContactChange(index, "relationship", e.target.value)
+                }
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               >
@@ -495,38 +553,55 @@ function HealthRecordForm() {
               </select>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Phone Number
+              </label>
               <input
                 type="tel"
                 value={contact.phone}
-                onChange={(e) => handleContactChange(index, 'phone', e.target.value)}
+                onChange={(e) =>
+                  handleContactChange(index, "phone", e.target.value)
+                }
                 className="w-full p-2 border border-gray-300 rounded"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 value={contact.email}
-                onChange={(e) => handleContactChange(index, 'email', e.target.value)}
+                onChange={(e) =>
+                  handleContactChange(index, "email", e.target.value)
+                }
                 className="w-full p-2 border border-gray-300 rounded"
               />
             </div>
           </div>
         </div>
       ))}
-      
+
       <button
         type="button"
         onClick={addContact}
         className="flex items-center justify-center w-full p-2 border border-dashed border-gray-300 rounded-lg hover:bg-gray-50"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 mr-1 text-gray-500"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+            clipRule="evenodd"
+          />
         </svg>
         Add Another Contact
       </button>
@@ -537,10 +612,11 @@ function HealthRecordForm() {
     <div className="space-y-6">
       <div className="bg-yellow-50 p-4 border-l-4 border-yellow-400 mb-6">
         <p className="text-sm text-yellow-700">
-          These consents are important for providing appropriate medical care to your child during school hours. Please read each statement carefully.
+          These consents are important for providing appropriate medical care to
+          your child during school hours. Please read each statement carefully.
         </p>
       </div>
-      
+
       <div className="space-y-4">
         <div className="p-4 border border-gray-200 rounded-lg">
           <div className="flex items-start">
@@ -556,12 +632,21 @@ function HealthRecordForm() {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="consent-emergency" className="font-medium text-gray-700">Emergency Medical Treatment</label>
-              <p className="text-gray-500">I authorize the school to arrange for emergency medical treatment for my child in the event I cannot be reached. This includes transportation to a medical facility if necessary.</p>
+              <label
+                htmlFor="consent-emergency"
+                className="font-medium text-gray-700"
+              >
+                Emergency Medical Treatment
+              </label>
+              <p className="text-gray-500">
+                I authorize the school to arrange for emergency medical
+                treatment for my child in the event I cannot be reached. This
+                includes transportation to a medical facility if necessary.
+              </p>
             </div>
           </div>
         </div>
-        
+
         <div className="p-4 border border-gray-200 rounded-lg">
           <div className="flex items-start">
             <div className="flex items-center h-5">
@@ -575,12 +660,22 @@ function HealthRecordForm() {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="consent-medication" className="font-medium text-gray-700">Medication Administration</label>
-              <p className="text-gray-500">I authorize the school nurse or designated personnel to administer prescribed medications that I have provided according to instructions. I will update the school if there are any changes to my child's medication needs.</p>
+              <label
+                htmlFor="consent-medication"
+                className="font-medium text-gray-700"
+              >
+                Medication Administration
+              </label>
+              <p className="text-gray-500">
+                I authorize the school nurse or designated personnel to
+                administer prescribed medications that I have provided according
+                to instructions. I will update the school if there are any
+                changes to my child's medication needs.
+              </p>
             </div>
           </div>
         </div>
-        
+
         <div className="p-4 border border-gray-200 rounded-lg">
           <div className="flex items-start">
             <div className="flex items-center h-5">
@@ -594,8 +689,17 @@ function HealthRecordForm() {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="consent-info-sharing" className="font-medium text-gray-700">Health Information Sharing</label>
-              <p className="text-gray-500">I authorize the school nurse to share relevant health information with appropriate school staff who may need to know this information to maintain my child's health and safety.</p>
+              <label
+                htmlFor="consent-info-sharing"
+                className="font-medium text-gray-700"
+              >
+                Health Information Sharing
+              </label>
+              <p className="text-gray-500">
+                I authorize the school nurse to share relevant health
+                information with appropriate school staff who may need to know
+                this information to maintain my child's health and safety.
+              </p>
             </div>
           </div>
         </div>
@@ -605,18 +709,22 @@ function HealthRecordForm() {
 
   // Tab navigation
   const tabs = [
-    { id: 1, name: 'Personal Info', icon: 'user' },
-    { id: 2, name: 'Medical Background', icon: 'heartbeat' },
-    { id: 3, name: 'Vision & Hearing', icon: 'eye' },
-    { id: 4, name: 'Emergency Contacts', icon: 'phone' },
-    { id: 5, name: 'Consents', icon: 'check-circle' },
+    { id: 1, name: "Personal Info", icon: "user" },
+    { id: 2, name: "Medical Background", icon: "heartbeat" },
+    { id: 3, name: "Vision & Hearing", icon: "eye" },
+    { id: 4, name: "Emergency Contacts", icon: "phone" },
+    { id: 5, name: "Consents", icon: "check-circle" },
   ];
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-5xl">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Student Health Record</h1>
-        <p className="text-gray-600">Please complete all sections of this health record form. Information provided will be kept confidential and used only for your child's healthcare at school.</p>
+        <p className="text-gray-600">
+          Please complete all sections of this health record form. Information
+          provided will be kept confidential and used only for your child's
+          healthcare at school.
+        </p>
       </div>
 
       <div className="bg-white shadow-md rounded-lg overflow-hidden mb-8">
@@ -628,9 +736,11 @@ function HealthRecordForm() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`
                   px-4 py-4 text-center flex-1 whitespace-nowrap
-                  ${activeTab === tab.id 
-                    ? 'border-b-2 border-blue-500 font-medium text-blue-600' 
-                    : 'text-gray-500 hover:text-gray-700'}
+                  ${
+                    activeTab === tab.id
+                      ? "border-b-2 border-blue-500 font-medium text-blue-600"
+                      : "text-gray-500 hover:text-gray-700"
+                  }
                 `}
               >
                 {tab.name}
@@ -651,11 +761,13 @@ function HealthRecordForm() {
               <button
                 type="button"
                 onClick={() => activeTab > 1 && setActiveTab(activeTab - 1)}
-                className={`px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 ${activeTab === 1 ? 'invisible' : ''}`}
+                className={`px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 ${
+                  activeTab === 1 ? "invisible" : ""
+                }`}
               >
                 Previous
               </button>
-              
+
               {activeTab < 5 ? (
                 <button
                   type="button"

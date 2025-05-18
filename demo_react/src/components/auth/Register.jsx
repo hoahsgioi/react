@@ -1,56 +1,56 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Register() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'parent' // Default role is parent
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "parent", // Default role is parent
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { register } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      return setError('Passwords do not match');
+      return setError("Passwords do not match");
     }
-    
+
     if (formData.password.length < 6) {
-      return setError('Password must be at least 6 characters');
+      return setError("Password must be at least 6 characters");
     }
-    
-    setError('');
+
+    setError("");
     setLoading(true);
-    
+
     try {
       await register({
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        role: formData.role
+        role: formData.role,
       });
-      
+
       // Redirect to login page
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
-      setError('Failed to create an account');
-      console.error('Registration error:', error);
+      setError("Failed to create an account");
+      console.error("Registration error:", error);
     } finally {
       setLoading(false);
     }
@@ -72,14 +72,20 @@ function Register() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+              role="alert"
+            >
               <span className="block sm:inline">{error}</span>
             </div>
           )}
-          
+
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Full name
               </label>
               <div className="mt-1">
@@ -97,7 +103,10 @@ function Register() {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email address
               </label>
               <div className="mt-1">
@@ -115,7 +124,10 @@ function Register() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="mt-1">
@@ -133,7 +145,10 @@ function Register() {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Confirm password
               </label>
               <div className="mt-1">
@@ -151,7 +166,10 @@ function Register() {
             </div>
 
             <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="role"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Register as
               </label>
               <div className="mt-1">
@@ -167,7 +185,8 @@ function Register() {
                 </select>
               </div>
               <p className="mt-1 text-xs text-gray-500">
-                Note: Admin, Manager, and Nurse accounts are created by system administrators.
+                Note: Admin, Manager, and Nurse accounts are created by system
+                administrators.
               </p>
             </div>
 
@@ -177,7 +196,7 @@ function Register() {
                 disabled={loading}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                {loading ? 'Creating account...' : 'Register'}
+                {loading ? "Creating account..." : "Register"}
               </button>
             </div>
           </form>
